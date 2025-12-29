@@ -6,7 +6,7 @@ import ProductItem from '../components/ProductItem';
 
 const Collection = () => {
 
-  const{products} = useContext(ShopContext);
+  const{products, search, showSearch} = useContext(ShopContext);
   const[showFilter,setShowFilter]= useState(false);//invisible for phone screens
   const[filterProducts,setFilterProducts]=useState([]);
   const[category,setCategory] = useState([]);
@@ -41,6 +41,12 @@ const Collection = () => {
   const applyFilter=()=>{
     //copy of products array on let variable
     let productsCopy = products.slice();//this copy will be created at start and stored on etFilterProducts(productsCopy)
+
+    //searchQuery 
+    if(showSearch && search){
+      productsCopy = productsCopy.filter(item => item.name.toLowerCase().includes(search.toLowerCase()));//making product and searchquery to lowerCase
+    }
+
 
     if(category.length>0){
       productsCopy = productsCopy.filter(item=> category.includes(item.category));//check if category we have this product is available, we save else we remove it
@@ -82,7 +88,7 @@ const Collection = () => {
 
   useEffect(()=>{
     applyFilter();
-  },[category,subCategory])//whenever this is updated, this function will run and categories will be applied
+  },[category,subCategory,search,showSearch])//whenever this is updated, this function will run and categories will be applied
   
   useEffect(()=>{
     sortProduct();
