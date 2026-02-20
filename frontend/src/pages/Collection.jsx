@@ -88,7 +88,7 @@ const Collection = () => {
 
   useEffect(()=>{
     applyFilter();
-  },[category,subCategory,search,showSearch])//whenever this is updated, this function will run and categories will be applied
+  },[category,subCategory,search,showSearch,products])//with api connection if we reload products
   
   useEffect(()=>{
     sortProduct();

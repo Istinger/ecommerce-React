@@ -12,7 +12,7 @@ const LatestCollection = () => {
     //whenever the component mounts, we have to load in Latest products
     useEffect(()=>{
         setLatestProducts(products.slice(0,10));
-    },[])//empty dependency array to run only once when component loaded
+    },[products])//add products once we connect with API
 
   return (
     <div className='my-10'>
