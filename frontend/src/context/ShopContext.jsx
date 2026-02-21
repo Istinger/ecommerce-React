@@ -14,6 +14,7 @@ const ShopContextProvider = (props) => {
   const [showSearch, setShowSearch] = useState(false); //display search bar
   const [cartItems, setCartItems] = useState({}); //empty object as initial value
   const [products, setProducts] = useState([]);
+  const [token,setToken] = useState('');
   const navigate = useNavigate();
 
   const addToCart = async (itemId, size) => {
@@ -95,6 +96,13 @@ const ShopContextProvider = (props) => {
     getProductsData();
   }, []);
 
+  //use effect for sign up token storage, to storage in token state if we-re logged it will not lose token
+  useEffect(() => {
+    if (!token && localStorage.getItem('token')) {
+      setToken(localStorage.getItem('token'))
+    }
+  }, []);
+
   const value = {
     products,
     currency,
@@ -110,6 +118,7 @@ const ShopContextProvider = (props) => {
     getCartAmount,
     navigate,
     backendUrl,
+    setToken,token
   };
 
   return (
