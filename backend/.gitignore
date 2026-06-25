@@ -24,4 +24,6 @@ README.md~
 *.sw?
 .env
 .env.local
+package-lock.json
+package.json
 vercel.json

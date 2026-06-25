@@ -12,7 +12,7 @@ const LatestCollection = () => {
     //whenever the component mounts, we have to load in Latest products
     useEffect(()=>{
         setLatestProducts(products.slice(0,10));
-    },[])//empty dependency array to run only once when component loaded
+    },[products])//add products once we connect with API
 
   return (
     <div className='my-10'>
@@ -23,7 +23,7 @@ const LatestCollection = () => {
             </p>
         </div>
         {/* Rendering products*/}
-        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gay-y-6'>
+        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gray-y-6'>
             {
                 latestProducts.map((item,index)=>(
                     <ProductItem key={index} id={item._id} image={item.image} name={item.name} price={item.price}/>    
